@@ -5,6 +5,7 @@ import { AppController } from './app.controller';
 import { OpenaiModule } from './openai/openai.module';
 import { AuthModule } from './auth/auth.module';
 import { UserModule } from './user/user.module';
+import { TemplatesModule } from './templates/templates.module';
 
 @Module({
   imports: [
@@ -12,6 +13,7 @@ import { UserModule } from './user/user.module';
     OpenaiModule,
     AuthModule,
     UserModule,
+    TemplatesModule,
   ],
   controllers: [AppController],
   providers: [AppService],

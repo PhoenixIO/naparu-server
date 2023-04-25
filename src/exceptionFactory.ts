@@ -4,6 +4,9 @@ const customErrors = {
   // register.dto.ts, login.dto.ts
   email: 'Вкажіть правильний E-mail',
   password: 'Пароль має бути довжиною від 8 до 128 символов',
+  // template.dto.ts
+  title: 'Заголовок має бути довжиною від 2 до 128 символів!',
+  questions: 'Щось не то! Перевірте чи заповнили усі запитання та відповіді',
 };
 
 export const exceptionFactory = (errors: ValidationError[]) => {
