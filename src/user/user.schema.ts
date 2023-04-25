@@ -14,6 +14,8 @@ export class User {
 
   @Prop() templates: mongoose.Types.ObjectId[];
 
+  @Prop() exams: mongoose.Types.ObjectId[];
+
   @Prop() name: string;
 }
 

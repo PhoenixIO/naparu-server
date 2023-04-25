@@ -21,7 +21,6 @@ export class TemplatesService {
 
     const user = await this.userService.findById(userId);
     user.templates.push(createdTemplate._id);
-    console.log(user);
     await this.userService.update(userId, user);
     return createdTemplate;
   }
