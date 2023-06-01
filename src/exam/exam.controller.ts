@@ -4,12 +4,14 @@ import { JwtAuthGuard } from 'src/auth/guards/jwt-auth.guard';
 import { UserService } from 'src/user/user.service';
 import { CreateExamDTO } from './create-exam.dto';
 import { ExamService } from './exam.service';
+import { TemplatesService } from 'src/templates/templates.service';
 
 @Controller('exams')
 export class ExamController {
   constructor(
     private readonly userService: UserService,
     private readonly examService: ExamService,
+    private readonly templateService: TemplatesService,
   ) {}
 
   @UseGuards(JwtAuthGuard)
@@ -19,6 +21,7 @@ export class ExamController {
     return await this.examService.create(user._id, examData);
   }
 
+  @UseGuards(JwtAuthGuard)
   @Post('/delete/:id')
   async delete(@Param('id') id: mongoose.Types.ObjectId) {
     const exam = await this.examService.isExamExists(id);
@@ -30,9 +33,22 @@ export class ExamController {
     return await this.examService.delete(id);
   }
 
+
+  @Get('/:id')
+  async get(@Request() req, @Param('id') id: mongoose.Types.ObjectId) {
+    const exam = await this.examService.isExamExists(id) as any;
+    const template = await this.templateService.findById(exam.template_id);
+    exam.template = template;
+    console.log(exam);
+    return {
+      exam,
+      template,
+    };
+  }
+
   @UseGuards(JwtAuthGuard)
   @Get('')
-  async get(@Request() req) {
+  async getAll(@Request() req) {
     const exams = [];
     const { user } = req;
     for (const examId of user.exams) {

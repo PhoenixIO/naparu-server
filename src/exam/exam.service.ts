@@ -38,6 +38,10 @@ export class ExamService {
   }
 
   async isExamExists(id: mongoose.Types.ObjectId) {
+    if (!mongoose.Types.ObjectId.isValid(id)) {
+      throw new HttpException('Невірний ID тестування', HttpStatus.BAD_REQUEST);
+    }
+
     const exam = await this.findById(id);
     if (!exam) {
       throw new HttpException('Тестування з таким ID не знайдено', HttpStatus.BAD_REQUEST);

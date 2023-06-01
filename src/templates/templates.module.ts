@@ -10,6 +10,7 @@ import { TemplateSchema } from './template.schema';
     UserModule,
     MongooseModule.forFeature([{ name: 'Template', schema: TemplateSchema }]),
   ],
+  exports: [TemplatesService],
   providers: [TemplatesService],
   controllers: [TemplatesController],
 })
