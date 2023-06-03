@@ -7,9 +7,9 @@ export enum QuestionType {
 }
 
 export class TemplateAnswer {
-  @IsString() @Length(1, 128) text: string;
+  @IsString() @Length(1, 256) text: string;
 
-  @IsString() @Length(0, 512) description?: string;
+  @IsString() @Length(0, 1024) description?: string;
 
   @IsBoolean() correct: boolean;
 }

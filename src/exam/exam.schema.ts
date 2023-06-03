@@ -4,7 +4,9 @@ import mongoose, { Document } from 'mongoose';
 export type ExamDocument = Exam & Document;
 
 class UserTest {
-  current_question: number;
+  id: string;
+  ip: string;
+  // answers
 }
 
 @Schema({ timestamps: true })
